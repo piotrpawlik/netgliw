@@ -15,6 +15,10 @@
           %span.navbar-brand #{AppConfig.workshops_name}
         %p.navbar-text.navbar-right
           Links should go here
+          
+    - flash.each do |name, msg|
+      .alert.alert-info= content_tag :div, msg
+          
     .container-fluid
       .row
         .col-lg-12
