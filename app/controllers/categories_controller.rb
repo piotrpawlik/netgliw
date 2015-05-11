@@ -45,10 +45,11 @@ class CategoriesController < ApplicationController
     def category_params
       params.require(:category).permit(:name)
     end
-    
+  
     def ensure_admin!
-      unless current_user.admin?
+      unless current_user.nil? && current_user.admin?
         sign_out current_user
+        flash[:info] = "You are not allowed to do that"
         redirect_to new_user_session_url
         return false
       end
