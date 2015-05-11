@@ -47,10 +47,10 @@ class CategoriesController < ApplicationController
     end
   
     def ensure_admin!
-      unless current_user.nil? && current_user.admin?
+      unless user_signed_in? && current_user.admin?
         #sign_out current_user
         flash[:info] = "You are not allowed to do that"
-        redirect_to root_url
+        redirect_to new_user_session_url
         return false
       end
     end
