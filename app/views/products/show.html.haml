@@ -1,5 +1,11 @@
-%p#notice= notice
-%p#error= flash[:error]
+.btn-group
+  = link_to 'Back', category_products_path, class: 'btn btn-primary'
+  - if user_is_admin?
+    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
+
+%p
+  %b Category:
+  = product.category.name
 
 %p
   %b Title:
@@ -11,16 +17,16 @@
   %b Price:
   = product.price
 
-%p
-  %b Category
-  = product.category.name
 
 %h3 Reviews
-= render 'reviews/form'
+%p
+  Average rate:
+  %b
+    = product.average_rating
+.list-group
+  = render reviews
+- if user_signed_in?
+  = render 'reviews/form'
 
-= render reviews
 
-- if user_is_admin?
-  = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
-  \|
-= link_to 'Back', category_products_path, class: 'btn btn-primary'
+

@@ -1,7 +1,10 @@
 %h1 Editing category
 
+.btn-group
+  = link_to 'Back', categories_path, class: 'btn btn-primary'
+  - if user_is_admin?
+    = link_to 'Show', category, class: 'btn btn-default'
+
 = render 'form'
 
-= link_to 'Show', category
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
+

@@ -1,4 +1,7 @@
-%p= review.content
-%p
+%p.list-group-item
+  = review.content
+  %br
+  Rating: 
   %b= review.rating
+  , by
   %em= review.author

@@ -1,19 +1,36 @@
 %p#notice= notice
 
 .btn-group
+  = link_to 'Back', categories_path, class: 'btn btn-primary'
   - if user_is_admin?
     = link_to 'Edit', edit_category_path(category), class: 'btn btn-default'
-  = link_to 'Back', categories_path, class: 'btn btn-primary'
+  = link_to 'Show all', category_products_path(category), class: 'btn btn-default'
 
 %p
-  %h1 Name:
-  = category.name
+  %h3 
+    Category:
+    %b 
+      = category.name
+
+%h4 Newest products in category:
+.list-group
+  - category.products.last(3).each do |product|
+    %p.list-group-item
+      = link_to product.title, category_product_path(category, product)
+      (
+      = product.created_at 
+      )
+
+%hr
 
 %p
-  - category.products.each do |product|
-    = product.title
-
-%p
-  %h3 New product
+  %h4 New product
   = render 'products/form'
+
+
+
+
+
+
+
 
