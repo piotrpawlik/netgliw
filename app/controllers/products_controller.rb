@@ -1,5 +1,6 @@
 class ProductsController < ApplicationController
   before_action :authenticate_user!, only: [:new, :edit, :update, :destroy, :create]
+  before_action :correct_user, only: [:edit, :update]
   
   expose(:category)
   expose(:products)
@@ -48,5 +49,15 @@ class ProductsController < ApplicationController
 
   def product_params
     params.require(:product).permit(:title, :description, :price, :category_id)
+  end
+  
+  def correct_user
+    id = params[:id]
+    product = Product.find id
+    category = Category.find params[:category_id]
+    if id != current_user.id 
+      flash[:error] = 'You are not allowed to edit this product.'
+      redirect_to category_product_url(category, product)
+    end
   end
 end
