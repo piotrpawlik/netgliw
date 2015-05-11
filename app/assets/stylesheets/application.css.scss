@@ -1,1 +1,11 @@
 @import "bootstrap";
+
+.right {
+  float: right;
+}
+
+//brand link
+a#brand:link    { color: #A8A8A8 }  /* unvisited links */
+a#brand:visited { color: #A8A8A8 }  /* visited links   */
+a#brand:hover   { color: #606060; text-decoration: none; }  /* user hovers     */
+a#brand:active  { color: #303030; text-decoration: none; }  /* active links    */
