@@ -22,6 +22,7 @@ gem 'konf'
 
 group :development do
   gem 'spring'
+  gem 'byebug'
 end
 
 group :development, :test do
