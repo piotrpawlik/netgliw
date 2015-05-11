@@ -10,8 +10,11 @@ module CategoriesHelper
   
   def owner_of_product(product)
     user = User.find product.user_id
-    user.firstname + " " + user.lastname unless user.nil?
-    
+    if current_user == user
+      'Me'
+    else
+      user.firstname + " " + user.lastname unless user.nil?
+    end
   end
   
 end

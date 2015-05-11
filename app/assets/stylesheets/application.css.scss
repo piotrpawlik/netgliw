@@ -9,3 +9,10 @@ a#brand:link    { color: #A8A8A8 }  /* unvisited links */
 a#brand:visited { color: #A8A8A8 }  /* visited links   */
 a#brand:hover   { color: #606060; text-decoration: none; }  /* user hovers     */
 a#brand:active  { color: #303030; text-decoration: none; }  /* active links    */
+
+
+div#full-description {
+  border: 1px dashed #ddd;
+  box-shadow: 0 0 0 3px #fff, 0 0 0 5px #ddd, 0 0 0 10px #fff, 0 0 2px 10px #eee;
+  padding: 20px;
+}

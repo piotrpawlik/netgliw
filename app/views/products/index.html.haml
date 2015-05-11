@@ -1,21 +1,26 @@
+= link_to "Add to #{category.name}", category_path(params[:category_id]), class: 'btn btn-success'
+
 %h1 Listing products
 
-%table
-  %tr
-    %th Title
-    %th Description
-    %th Price
-    %th
-    %th
-    %th
-
-  - products.each do |product|
+%table.table.table-hover
+  %thead
     %tr
-      %td= product.title
-      %td= product.description
-      %td= product.price
-      %td= link_to 'Show', category_product_path(product.category, product)
-      %td= link_to 'Edit', edit_category_product_path(product.category, product)
-      %td= link_to 'Destroy', category_product_path(product.category, product), method: :delete, data: { confirm: 'Are you sure?' }
+      %th Title
+      %th Short description
+      %th Price
+      %th Action
+
+  %tbody
+    - products.each do |product|
+      %tr
+        %td= product.title
+        %td= product.description[0..35] + "..."
+        %td= product.price
+        %td
+          = link_to 'Show', category_product_path(product.category, product), class: 'btn btn-default btn-xs'
+          - if user_is_admin? or owner_of_product?(product)
+            = link_to 'Edit', edit_category_product_path(product.category, product), class: 'btn btn-default btn-xs'
+            = link_to 'Destroy', category_product_path(product.category, product), method: :delete, 
+            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
 %br

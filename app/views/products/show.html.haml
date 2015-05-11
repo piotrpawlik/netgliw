@@ -1,26 +1,34 @@
 .btn-group
-  = link_to 'Back', category_products_path, class: 'btn btn-primary'
-  - if user_is_admin?
-    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'
+  = link_to "Back to #{product.category.name}", category_products_path, class: 'btn btn-primary'
+  - if user_is_admin? or owner_of_product(product)
+    = link_to 'Edit', edit_category_product_path(category.id, product.id), class: 'btn btn-default'   
+
 
 %p
-  %b Category:
-  = product.category.name
-
-%p
-  %b Title:
-  = product.title
-%p
-  %b Description:
-  = product.description
+  %h2
+    %b
+      = product.title
+  
 %p
   %b Price:
   = product.price
 
+  %p
+    %b
+      - if owner_of_product?(product) or user_is_admin?
+        Owner:
+        = owner_of_product(product)
+
+%p
+  %b Full description:
+  #full-description
+    = product.description
+
+%hr
 
 %h3 Reviews
 %p
-  Average rate:
+  Average rating:
   %b
     = product.average_rating
 .list-group

@@ -9,14 +9,15 @@
     %th Name
     %th
 
-
   - categories.each do |category|
     %tr
       %td= category.name
       %td
-        = link_to 'Show', category, class: 'btn btn-default btn-xs'
-        - if user_is_admin?
-          = link_to 'Edit', edit_category_path(category), class: 'btn btn-default btn-xs'
-          = link_to 'Destroy', category, method: :delete, data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
+        %p.right
+          = link_to 'Show', category, class: 'btn btn-default btn-xs'
+          - if user_is_admin?
+            = link_to 'Edit', edit_category_path(category), class: 'btn btn-default btn-xs'
+            = link_to 'Destroy', category, method: :delete, 
+            data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 
 
