@@ -22,6 +22,7 @@ class ProductsController < ApplicationController
 
   def create
     self.product = Product.new(product_params)
+    product.user_id = current_user.id
 
     if product.save
       category.products << product
@@ -55,7 +56,7 @@ class ProductsController < ApplicationController
     id = params[:id]
     product = Product.find id
     category = Category.find params[:category_id]
-    if id != current_user.id 
+    unless (current_user.admin? or id != current_user.id) 
       flash[:error] = 'You are not allowed to edit this product.'
       redirect_to category_product_url(category, product)
     end
