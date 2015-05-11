@@ -1,6 +1,8 @@
-= link_to "Add to #{category.name}", category_path(params[:category_id]), class: 'btn btn-success'
+- if user_signed_in?
+  = link_to "Add to #{category.name}", category_path(params[:category_id]), class: 'btn btn-success'
 
-%h1 Listing products
+%h1
+  = "All products in #{category.name}"
 
 %table.table.table-hover
   %thead
