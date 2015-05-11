@@ -1,7 +1,12 @@
 %p#notice= notice
 
+.btn-group
+  - if user_is_admin?
+    = link_to 'Edit', edit_category_path(category), class: 'btn btn-default'
+  = link_to 'Back', categories_path, class: 'btn btn-primary'
+
 %p
-  %b Name:
+  %h1 Name:
   = category.name
 
 %p
@@ -12,6 +17,3 @@
   %h3 New product
   = render 'products/form'
 
-= link_to 'Edit', edit_category_path(category)
-\|
-= link_to 'Back', categories_path, class: 'btn btn-primary'
