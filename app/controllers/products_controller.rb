@@ -56,7 +56,7 @@ class ProductsController < ApplicationController
     id = params[:id]
     product = Product.find id
     category = Category.find params[:category_id]
-    if id != current_user.id 
+    if not current_user.admin?
       flash[:error] = 'You are not allowed to edit this product.'
       redirect_to category_product_url(category, product)
     end
