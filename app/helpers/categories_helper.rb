@@ -5,7 +5,7 @@ module CategoriesHelper
   end
   
   def owner_of_product?(product)
-    return true if product.user_id == current_user.id
+    return true if user_signed_in? and product.user_id == current_user.id
   end
   
   def owner_of_product(product)
