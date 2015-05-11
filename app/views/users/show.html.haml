@@ -39,14 +39,16 @@
       = user.current_sign_in_ip
     
 .col-sm-8
-  %h3 My last reviews:
+  %h3 My recent reviews:
   %ul.list-group
     - user.reviews.last(5).each do |review|
       %li.list-group-item
+        (
         %b
-          (
           = review.rating
-          )
+        ,
+        = review.created_at.strftime("%d-%m-%Y")
+        )
         = review.short_content
         %span.right
           = link_to "Show product", category_product_path( review.product.category, review.product ),
