@@ -8,11 +8,11 @@ class ReviewsController < ApplicationController
 
   def create
     self.review = Review.new(review_params)
-    review.user_id = current_user.id
+    user_id = current_user.id
+    review.user_id = user_id
   
     if review.save
       product.reviews << review
-      
       redirect_to category_product_url(product.category, product), notice: 'Review was successfully created.'
     else
       render :template => 'products/show'

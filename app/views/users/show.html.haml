@@ -1,2 +1,81 @@
-%h1 Users#show
-%p Find me in app/views/users/show.html.haml
+.col-sm-4
+  
+  - if user_is_admin?
+    = image_tag "admin-banner.jpg", id: 'profile-banner'
+  
+  %h1
+    = user.firstname + ' ' + user.lastname
+  
+  %p
+    %b
+      Email: 
+    = user.email
+    
+  %h3
+    Stats
+  %ul
+    %li
+      %b
+        Joined:
+      = user.created_at.strftime("%D")
+    %li
+      %b
+        Last profile update:
+      = user.updated_at.strftime("%D, %H:%M")
+    %li
+      %b
+        Login count:
+      = user.sign_in_count
+    
+    %li
+      %b
+        Logged in for:
+      = user.logged_in_for
+      minutes
+      
+    %li
+      %b
+        You IP address:
+      = user.current_sign_in_ip
+    
+.col-sm-8
+  %h3 My last reviews:
+  %ul.list-group
+    - user.reviews.last(5).each do |review|
+      %li.list-group-item
+        %b
+          (
+          = review.rating
+          )
+        = review.short_content
+        %span.right
+          = link_to "Show product", category_product_path( review.product.category, review.product ),
+          class: 'btn btn-default btn-xs'
+          
+  %h3 My products:
+  %ul.list-group
+    - user.products.last(5).each do |product|
+      %li.list-group-item
+        = product.title
+        (
+        = product.category.name
+        )
+        %span.right
+          = link_to "Edit", edit_category_product_path( product.category, product ),
+          class: 'btn btn-default btn-xs'
+          = link_to "Show product", category_product_path( product.category, product ),
+          class: 'btn btn-default btn-xs'
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
+        
