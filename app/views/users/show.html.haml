@@ -43,10 +43,9 @@
   %ul.list-group
     - user.reviews.last(5).each do |review|
       %li.list-group-item
-        (
-        %b
+        %span.badge.bagde_left
           = review.rating
-        ,
+        (
         = review.created_at.strftime("%d-%m-%Y")
         )
         = review.short_content

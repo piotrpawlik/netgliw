@@ -25,3 +25,8 @@ div#full-description {
   margin-left: auto;
   margin-right: auto;
 }
+
+.bagde_left {
+  @extend .pull-left;
+  margin-right: 5px;
+}
