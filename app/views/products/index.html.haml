@@ -20,8 +20,9 @@
         %td= product.price
         %td
           = link_to 'Show', category_product_path(product.category, product), class: 'btn btn-default btn-xs'
-          - if user_is_admin? or owner_of_product?(product)
+          - if user_is_admin?
             = link_to 'Edit', edit_category_product_path(product.category, product), class: 'btn btn-default btn-xs'
+          - if user_is_admin? or owner_of_product?(product)
             = link_to 'Destroy', category_product_path(product.category, product), method: :delete, 
             data: { confirm: 'Are you sure?' }, class: 'btn btn-danger btn-xs'
 

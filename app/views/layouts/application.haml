@@ -15,5 +15,7 @@
       - flash.each do |name, msg|
         .alert.alert-info= content_tag :div, msg
       .row
+        .col-lg-2
         .col-lg-8
           = yield
+        .col-lg-2

@@ -5,6 +5,11 @@ class Review < ActiveRecord::Base
   validates :rating, :user_id, :content, presence: true
   
   def short_content
-    content[0..20] + "..."
+    max_len = 20
+    if content.length > 20
+      content[0..max_len-3] + "..."
+    else
+      content
+    end
   end
 end
